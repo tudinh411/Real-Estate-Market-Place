@@ -11,23 +11,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userInfo = explode('|', $user);
         $savedUsername = trim($userInfo[0]);
         $savedHashedPassword = trim($userInfo[1]);
+        $role = trim($userInfo[2]); // Assuming the role is stored in the third position
 
         // Check if the username exists
         if ($savedUsername === $username) {
             // Verify the password
             if (password_verify($password, $savedHashedPassword)) {
-                // Password is correct, start a session and redirect to the desired page
+                // Password is correct, start a session and redirect based on user role
+                session_start();
                 $_SESSION['username'] = $username;
-                header("Location: main.php");
-                exit;
+                $_SESSION['role'] = $role;
+
+                // Redirect based on user role
+                switch ($role) {
+                    case 'seller':
+                        header("Location: seller_dashboard.php");
+                        exit;
+                    case 'buyer':
+                        header("Location: buyer_dashboard.php");
+                        exit;
+                }
             } else {
-                // Incorrect password, redirect back to login with error message
+                // Incorrect password, set error message
                 $errorMessage = "Invalid username or password. Please try again.";
             }
         }
     }
 
-    // Username not found, redirect back to login with error message
+    // Username not found, set error message
     $errorMessage = "Invalid username or password. Please try again.";
 }
 ?>
@@ -56,3 +67,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </body>
 </html>
+
