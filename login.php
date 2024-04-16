@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     case 'seller':
                         header("Location: seller_dashboard.php");
                         exit;
-                    case 'buyer':
-                        header("Location: buyer_dashboard.php");
+                    case 'user':
+                        header("Location: user_dashboard.php");
                         exit;
                 }
             } else {
