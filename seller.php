@@ -43,7 +43,7 @@
             padding: 10px 20px;
             font-family: 'Inter';
             font-size: 15px;
-            border: 2px red solid;
+            border: 2px #76A5BF solid;
             flex-direction: row;
             align-items: flex-start;
             justify-content: center;
@@ -78,13 +78,11 @@
         }
 
         .info {
-            border: 2px green solid;
             margin-right: 20px;
             padding: 20px;
         }
 
         .otherinfo {
-            border: 2px pink solid;
             padding: 20px;
         }
     </style>
