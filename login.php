@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" value="Log In">
             <br><br><br>
             <p>Don't have an account?</p>
-            <input type="button" value="Create an account" id="b1" onclick="window.location.href='registration.php';">
+            <input type="button" value="Create an account" id="b1" onclick="window.location.href='register.php';">
         </form>
     </div>
 </body>
