@@ -110,7 +110,7 @@
         <input type="button" id="b1" value="Login" onclick="window.location.href='login.php';">
     </form>
     </div>
-    <script>
+     <script>
     function detectCardType() {
         var cardNumber = document.getElementById("creditcard").value;
         var cardType = document.getElementById("card-type");
@@ -123,8 +123,8 @@
         } else if (/^3[47]/.test(cardNumber)) {
             detectedType = "American Express";
         }
-        console.log( detectedType); 
-        cardType.textContent = detectedType;
+        console.log("Detected Card Type: " + detectedType); 
+        cardType.textContent = "Detected Card Type: " + detectedType;
     }
         document.getElementById("creditcard").addEventListener("input", detectCardType);
         detectCardType();
@@ -136,52 +136,54 @@
 
 <?php
 
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $username = $_POST["username"];
-    $passwrd = $_POST["password"];
-    $userrole = $_POST["role"];
-    $email = $_POST['email'];
-    $creditcard = $_POST['creditcard'];
-    $expiration = $_POST['expiration'];
-    $cvv = $_POST['cvv'];
-    $useraddress = $_POST['address'];
-    $billing = $_POST['billing'];
-    $phone = $_POST['phone'];
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Initialize variables with form data
+    $username = isset($_POST["username"]) ? $_POST["username"] : "";
+    $passwrd = isset($_POST["password"]) ? $_POST["password"] : "";
+    $userrole = isset($_POST["role"]) ? $_POST["role"] : "";
+    $email = isset($_POST['email']) ? $_POST['email'] : "";
+    $creditcard = isset($_POST['creditcard']) ? $_POST['creditcard'] : "";
+    $expiration = isset($_POST['expiration']) ? $_POST['expiration'] : "";
+    $cvv = isset($_POST['cvv']) ? $_POST['cvv'] : "";
+    $useraddress = isset($_POST['address']) ? $_POST['address'] : "";
+    $billing = isset($_POST['billing']) ? $_POST['billing'] : "";
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
 
-$host = "localhost";
-$user = "syosef2";
-$pass = "syosef2";
-$dbname = "syosef2";
-$conn = new mysqli($host, $user, $pass, $dbname);
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "register";
+    $conn = new mysqli($host, $user, $pass, $dbname, null, '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock');
 
-if ($conn->connect_error) {
-    echo "Connection failed: " . $conn->connect_error;
-} else {
-
-  $sql_create_table = "CREATE TABLE IF NOT EXISTS USERINFO (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL,
-    passwrd VARCHAR(30) NOT NULL,
-    userrole VARCHAR(30) NOT NULL,
-    email VARCHAR(30) NOT NULL,
-    creditcard VARCHAR(30) NOT NULL,
-    expiration VARCHAR(30) NOT NULL,
-    cvv VARCHAR(30) NOT NULL,
-    useraddress VARCHAR(30) NOT NULL,
-    billing VARCHAR(30) NOT NULL,
-    phone VARCHAR(30) NOT NULL
-)";
-
-    $sql_insert_data = "INSERT INTO USERINFO (username, passwrd, userrole, email, creditcard, expiration, cvv, useraddress, billing, phone) 
-    VALUES ('$username', '$passwrd', '$userrole', '$email', '$creditcard', '$expiration', '$cvv', '$useraddress', '$billing', '$phone')";
-
-    if ($conn->query($sql_insert_data) === TRUE) {
-        echo "Registration was succesful";
+    if ($conn->connect_error) {
+        echo "Connection failed: " . $conn->connect_error;
     } else {
-        echo "Registration was unsuccesful";
-    }
-}
 
-$conn->close();
+        $sql_create_table = "CREATE TABLE IF NOT EXISTS USERS (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(30) NOT NULL,
+            passwrd VARCHAR(30) NOT NULL,
+            userrole VARCHAR(30) NOT NULL,
+            email VARCHAR(30) NOT NULL,
+            creditcard VARCHAR(30) NOT NULL,
+            expiration VARCHAR(30) NOT NULL,
+            cvv VARCHAR(30) NOT NULL,
+            useraddress VARCHAR(255) NOT NULL,
+            billing VARCHAR(255) NOT NULL,
+            phone VARCHAR(30) NOT NULL
+        )";
+
+        $sql_insert_data = "INSERT INTO USERS (username, passwrd, userrole, email, creditcard, expiration, cvv, useraddress, billing, phone) 
+            VALUES ('$username', '$passwrd', '$userrole', '$email', '$creditcard', '$expiration', '$cvv', '$useraddress', '$billing', '$phone')";
+
+        if ($conn->query($sql_insert_data) === TRUE) {
+            echo "<script> alert('Registration was successful'); </script>";
+        } else {
+            echo "<script> alert('Registration was unsuccessful'); </script>";
+        }
+    }
+
+    $conn->close();
+} 
+
 ?>
