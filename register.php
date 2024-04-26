@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>Register</title>
-<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
 <style>
     body {
         width: 100vw;

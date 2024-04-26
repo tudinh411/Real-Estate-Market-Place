@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>User Login</title>
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
     <style>
         body {
             width: 100vw;
