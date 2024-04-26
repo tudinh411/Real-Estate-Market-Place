@@ -18,11 +18,16 @@
         position: fixed;
         align-items: center;
         display: flex;
+        justify-content: center;
         background-color: white;
         top: 0;
         left: 0;
         right: 0;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     .title {
@@ -85,7 +90,9 @@
 </head>
 <body>
     <header>
-        <h1 class="title">HAVEN</h1>
+        <a href="homepage.html">
+            <h1 class="title">HAVEN</h1>
+        </a>
     </header>
     <div class="container">
     <h2>Register</h2>
