@@ -150,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br><br><br>
             <p>Don't have an account?</p>
             <input type="button" value="Create an account" id="b1" onclick="window.location.href='register.php';">
-        
         </form>
          <br><br><br><br><a href = "admin.html"><button>Admin</button></a>
     </div>
