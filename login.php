@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($row["userrole"] == 'seller') {
             header("Location: welcome.php");
+        } else if ($row["userrole"] == 'admin') {
+            header("Location: admin.html");
         } else {
             header("Location: buyer.php");
         }
@@ -153,7 +155,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>Don't have an account?</p>
             <input type="button" value="Create an account" onclick="window.location.href='register.php';">
         </form>
-        <br><br><br><br><a href="admin.html"><button>Admin</button></a>
     </div>
 </body>
 
