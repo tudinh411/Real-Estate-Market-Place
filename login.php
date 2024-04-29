@@ -23,8 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
         $_SESSION['username'] = $username;
-        header("Location: welcome.php");
+
+        if ($row["userrole"] == 'seller') {
+            header("Location: welcome.php");
+        } else {
+            header("Location: buyer.php");
+        }
     } else {
         echo "<script>alert('Invalid username or password');</script>";
     }
